@@ -6,15 +6,30 @@ import requests from '@/Request'
 
 const Main = () => {
   const [movies, setMovies] = useState([])
+  const [error, setError] = useState(null);
+
 
   const movie = movies[Math.floor(Math.random() * movies.length)]
 
+
   useEffect(() => {
-    axios.get(requests.requestPopular).then((response) =>{
-      setMovies(response.data.results)
-    })
-  }, [])
-  console.log(movie)
+    const fetchMovies = async () => {
+      try {
+        const response = await fetch(requests.requestPopular);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setMovies(data.results);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
+  console.log(movies);
   
   
   return (
