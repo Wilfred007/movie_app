@@ -24,8 +24,8 @@ const Main = () => {
         <img className='w-full h-full object-cover' src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`} alt={movie?.title} />
 
         <div>
-          <button>Play</button>
-          <button>Watch Later</button>
+          <button className='border text-black bg-gray-300 py-2 px-5'>Play</button>
+          <button className='border text-white bg-black py-2 px-5'>Watch Later</button>
         </div>
 
       </div>
